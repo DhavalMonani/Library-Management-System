@@ -1,14 +1,17 @@
+from Library.user import User
 class Library:
 
     def __init__(self):
-         ## default book
+         ## all the books in library
          self.books = [{"ISBN": "1", "title": "The Alchemist", "author": "Paulo Coelho", "publication_year": "1988", "status": "available"}]
 
-         ## users in library
-         self.users = [{"user_id":1,"username":"Dhaval","role":"Librarian"}]
+         ## Dictionary of users with user_id as key
+         self.users = {}
     ##
 
+
     def add_book(self, isbn, title, author, publication_year):
+
         ## creating a dictionary for the new book and default status 'available'
         new_book = {
             "ISBN": isbn,
