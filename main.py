@@ -26,8 +26,13 @@ class Library:
                     raise ValueError(f'Sorry, "{title}" is currently borrowed.')
         raise ValueError(f'Book "{title}" not found in the library.')
 
-    def return_book(self):
-        pass
+    def return_book(self,title):
+        for book in self.books:
+            if book["title"].lower() == title.lower():
+                if book["status"] == "borrowed":
+                    book["status"] = "available"
+
+                return "Book Returned Successfully!"
     ##
 
     def view_available_books(self):
