@@ -3,6 +3,9 @@ class Library:
     def __init__(self):
          ## default book
          self.books = [{"ISBN": "1", "title": "The Alchemist", "author": "Paulo Coelho", "publication_year": "1988", "status": "available"}]
+
+         ## users in library
+         self.users = [{"user_id":1,"username":"Dhaval","role":"Librarian"}]
     ##
 
     def add_book(self, isbn, title, author, publication_year):
