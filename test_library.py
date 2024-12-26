@@ -9,9 +9,9 @@ class LibraryTestCases(unittest.TestCase):
 
     def test_add_user(self):
         result = self.Librarian.add_user("1","Dhaval","Librarian")
-        self.assertEqual(result,"User {username} with role {role} added successfully!")
+        self.assertEqual(result,"User added successfully!")
     ##
-    
+
     # def test_add_book(self):
     #     ## adding a book to library books
     #     result = self.Librarian.add_book("2", "Harry Potter", "J.K. Rowling", "1997")
