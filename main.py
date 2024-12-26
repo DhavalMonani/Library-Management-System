@@ -13,18 +13,18 @@ class Library:
             "status": "available"
         }
         self.books.append(new_book)
-        print(self.books)   
         return "Book Added Successfully!"
     ##
 
-    def borrow_book(self,title):
+    def borrow_book(self, title):
         for book in self.books:
             if book["title"].lower() == title.lower():
                 if book["status"] == "available":
                     book["status"] = "borrowed"
-                    print(self.books)
                     return "Book Borrowed Successfully!"
-    ##
+                else:
+                    raise ValueError(f'Sorry, "{title}" is currently borrowed.')
+        raise ValueError(f'Book "{title}" not found in the library.')
 
     def return_book(self):
         pass

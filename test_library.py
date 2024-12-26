@@ -16,3 +16,10 @@ class LibraryTestCases(unittest.TestCase):
         self.assertEqual(result,"Book Borrowed Successfully!")
     ##
 
+    def test_borrow_book2(self):
+        with self.assertRaises(ValueError) as context:
+            self.Librarian.borrow_book("The Alchemist")
+        self.assertEqual(str(context.exception), 'Sorry, "The Alchemist" is currently borrowed.')
+    ##
+
+
