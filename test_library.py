@@ -31,4 +31,9 @@ class LibraryTestCases(unittest.TestCase):
         self.assertEqual(str(context.exception), 'Book "The Hobbit" not found in the library.')
     ##
 
+    def test_return_book(self):
+        ## checking if book can be returned or not
+        result = self.Librarian.return_book("The Alchemist")
+        self.assertEqual(result, "Book Returned Successfully!")
+
 
