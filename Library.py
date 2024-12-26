@@ -53,17 +53,25 @@ class Library:
                         raise ValueError(f'Sorry, "{title}" is currently borrowed.') ## raising error if borrowed book is being borrowed again
             raise ValueError(f'Book "{title}" not found in the library.') ## raising error if an unknown book is being requested for borrowing
 
-#     def return_book(self,title):
-#         ## checking if book is available or not
-#         for book in self.books:
-#             if book["title"].lower() == title.lower():
-#                 if book["status"] == "borrowed":
-#                     book["status"] = "available" ## updating the status of the book
-#                     return "Book Returned Successfully!"
-#                 else:
-#                     raise ValueError(f'Sorry, "{title}" is already available.') ##raising error if book is already available
-#         raise ValueError(f'Book "{title}" not found in the library.') ## raising error if book is not found!
-#     ##
+    def return_book(self,user_id,title):
+        ## validating the user
+        if user_id not in self.users:
+            raise ValueError("User Not Found!")
+        else:
+            ## getting user data with user_id from self.users
+            user = self.users[user_id]
+
+            ## checking if book is available or not
+            for book in self.books:
+                if book["title"].lower() == title.lower():
+                    if book["status"] == "borrowed":
+                        book["status"] = "available" ## updating the status of the book
+                        user.borrowed_books.remove(title) ##removing book from user's borrowed books
+                        return "Book Returned Successfully!"
+                    else:
+                        raise ValueError(f'Sorry, "{title}" is already available.') ##raising error if book is already available
+            raise ValueError(f'Book "{title}" not found in the library.') ## raising error if book is not found!
+    ##
 
 #     def view_available_books(self):
 #         return [book for book in self.books if book["status"] == "available"]
