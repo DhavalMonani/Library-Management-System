@@ -16,20 +16,23 @@ class Library:
         return "User added successfully!"
     ##
 
-#     def add_book(self, isbn, title, author, publication_year):
-
-#         ## creating a dictionary for the new book and default status 'available'
-#         new_book = {
-#             "ISBN": isbn,
-#             "title": title,
-#             "author": author,
-#             "publication_year": publication_year,
-#             "status": "available"
-#         }
-#         ## adding the book inside the list
-#         self.books.append(new_book)
-#         return "Book Added Successfully!"
-#     ##
+    def add_book(self,user_id, isbn, title, author, publication_year):
+        ## check if user is valid or not
+        if user_id not in self.users or self.users[user_id].role != "Librarian":
+            raise ValueError("Only Librarian can add books.")
+        else:
+        ## creating a dictionary for the new book and default status 'available'
+            new_book = {
+                "ISBN": isbn,
+                "title": title,
+                "author": author,
+                "publication_year": publication_year,
+                "status": "available"
+            }
+            ## adding the book inside the list
+            self.books.append(new_book)
+            return "Book Added Successfully!"
+    ##
 
 #     def borrow_book(self, title):
 #         ## searching for the book inside the books list

@@ -5,10 +5,13 @@ class LibraryTestCases(unittest.TestCase):
     def setUp(self):
         ## Initialize a new instance of Library before each test
         self.Librarian = Library()
+        result = self.Librarian.add_user("1","Dhaval","Librarian")
+        self.assertEqual(result,"User added successfully!")
     ##
 
     def test_add_user(self):
-        result = self.Librarian.add_user("1","Dhaval","Librarian")
+
+        result = self.Librarian.add_user("2","John")
         self.assertEqual(result,"User added successfully!")
     ##
 
