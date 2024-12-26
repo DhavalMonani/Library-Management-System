@@ -12,11 +12,11 @@ class LibraryTestCases(unittest.TestCase):
         self.assertEqual(result,"User added successfully!")
     ##
 
-    # def test_add_book(self):
-    #     ## adding a book to library books
-    #     result = self.Librarian.add_book("2", "Harry Potter", "J.K. Rowling", "1997")
-    #     self.assertEqual(result, "Book Added Successfully!")
-    # ##
+    def test_add_book(self):
+        ## adding a book to library books
+        result = self.Librarian.add_book("1","2", "Harry Potter", "J.K. Rowling", "1997")
+        self.assertEqual(result, "Book Added Successfully!")
+    ##
 
     # def test_borrow_book(self):
     #     ## Borrow the book
