@@ -21,16 +21,16 @@ class LibraryTestCases(unittest.TestCase):
         self.assertEqual(result, "Book Added Successfully!")
     ##
 
-    # def test_borrow_book(self):
-    #     ## Borrow the book
-    #     result = self.Librarian.borrow_book("The Alchemist")
-    #     self.assertEqual(result, "Book Borrowed Successfully!")
+    def test_borrow_book(self):
+        ## Borrow the book
+        result = self.Librarian.borrow_book("2","The Alchemist")
+        self.assertEqual(result, "Book Borrowed Successfully!")
 
-    #     ## Attempt to borrow the same book again, which should raise an error
-    #     with self.assertRaises(ValueError) as context:
-    #         self.Librarian.borrow_book("The Alchemist")
-    #     self.assertEqual(str(context.exception), 'Sorry, "The Alchemist" is currently borrowed.')
-    # ##
+        ## Attempt to borrow the same book again, which should raise an error
+        with self.assertRaises(ValueError) as context:
+            self.Librarian.borrow_book("The Alchemist")
+        self.assertEqual(str(context.exception), 'Sorry, "The Alchemist" is currently borrowed.')
+    ##
 
     # def test_nonexistent_borrow_book(self):
     #     ## testing if a non-existent book can be borrowed or not!
