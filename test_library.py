@@ -85,6 +85,6 @@ class LibraryTestCases(unittest.TestCase):
     # ##
 
     def test_view_user(self):
-        result = self.Librarian.view_user("101")
-        self.assertEqual()
+        result = self.Librarian.view_user("1")
+        self.assertEqual(result,"User ID: 1, Username: Dhaval, Role: Librarian, Borrowed Books: []")
  

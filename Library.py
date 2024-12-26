@@ -78,4 +78,8 @@ class Library:
         return [book for book in self.books if book["status"] == "available"]
     ##
 
-# ##
+    def view_user(self,user_id):
+        if user_id not in self.users:
+            raise ValueError(f"User ID {user_id} does not exist.")
+        return str(self.users[user_id])
+##
