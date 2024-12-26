@@ -82,4 +82,10 @@ class Library:
         if user_id not in self.users:
             raise ValueError(f"User ID {user_id} does not exist.")
         return str(self.users[user_id])
+    ##
+
+    def view_all_user(self,user_id):
+        if self.users[user_id].role != "Librarian":
+            raise ValueError("Only admins can view all users.")
+        return [str(user) for user in self.users.values() if user.role != "Librarian"]
 ##

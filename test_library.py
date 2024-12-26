@@ -90,6 +90,6 @@ class LibraryTestCases(unittest.TestCase):
     # ##
 
     def test_view_all_user(self):
-        result = self.Librarian.view_all_user()
-        self.assertEqual(result,"User ID: 2, Username: John, Role: user, Borrowed Books: []")
-    #
+        result = self.Librarian.view_all_user("1")
+        self.assertEqual(result,["User ID: 2, Username: John, Role: user, Borrowed Books: []"])
+    ##
