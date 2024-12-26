@@ -24,7 +24,7 @@ class LibraryTestCases(unittest.TestCase):
         self.assertEqual(str(context.exception), 'Sorry, "The Alchemist" is currently borrowed.')
     ##
 
-    def test_nonexistent_book(self):
+    def test_nonexistent_borrow_book(self):
         ## testing if a non-existent book can be borrowed or not!
         with self.assertRaises(ValueError) as context:
             self.Librarian.borrow_book("The Hobbit")
@@ -35,5 +35,18 @@ class LibraryTestCases(unittest.TestCase):
         ## checking if book can be returned or not
         result = self.Librarian.return_book("The Alchemist")
         self.assertEqual(result, "Book Returned Successfully!")
+
+        ## checking if available book can be returned or not
+        with self.assertRaises(ValueError) as context:
+            self.Librarian.return_book("The Alchemist")
+        self.assertEqual(str(context.exception), 'Sorry, "The Alchemist" is already available.')
+    ##
+
+    def test_nonexistent_return_book(self):
+        ## testing if a non-existent book can be returned or not!
+        with self.assertRaises(ValueError) as context:
+            self.Librarian.return_book("The Hobbit")
+        self.assertEqual(str(context.exception), 'Book "The Hobbit" not found in the library.')
+    ##
 
 
