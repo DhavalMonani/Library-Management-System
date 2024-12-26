@@ -49,4 +49,9 @@ class LibraryTestCases(unittest.TestCase):
         self.assertEqual(str(context.exception), 'Book "The Hobbit" not found in the library.')
     ##
 
-
+    def test_available_books(self):
+        ## expected books will be compared with available books
+        expected_books = [{"ISBN": "1", "title": "The Alchemist", "author": "Paulo Coelho", "publication_year": "1988", "status": "available"}]
+        available_books = self.Librarian.view_available_books() ##calling the method for getting output
+        self.assertEqual(available_books,expected_books) ##comparing both the outputs
+ 
