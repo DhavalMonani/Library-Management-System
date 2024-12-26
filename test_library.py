@@ -7,13 +7,15 @@ class LibraryTestCases(unittest.TestCase):
         self.Librarian = Library()
         result = self.Librarian.add_user("1","Dhaval","Librarian")
         self.assertEqual(result,"User added successfully!")
-    ##
-
-    def test_add_user(self):
-
         result = self.Librarian.add_user("2","John")
         self.assertEqual(result,"User added successfully!")
     ##
+
+    # def test_add_user(self):
+
+    #     result = self.Librarian.add_user("2","John")
+    #     self.assertEqual(result,"User added successfully!")
+    # ##
 
     def test_add_book(self):
         ## adding a book to library books
@@ -28,7 +30,7 @@ class LibraryTestCases(unittest.TestCase):
 
         ## Attempt to borrow the same book again, which should raise an error
         with self.assertRaises(ValueError) as context:
-            self.Librarian.borrow_book("The Alchemist")
+            self.Librarian.borrow_book("2","The Alchemist")
         self.assertEqual(str(context.exception), 'Sorry, "The Alchemist" is currently borrowed.')
     ##
 
