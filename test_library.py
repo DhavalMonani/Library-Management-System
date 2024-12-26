@@ -84,7 +84,12 @@ class LibraryTestCases(unittest.TestCase):
     #      self.assertEqual(available_books,expected_books) ##comparing both the outputs
     # ##
 
-    def test_view_user(self):
-        result = self.Librarian.view_user("1")
-        self.assertEqual(result,"User ID: 1, Username: Dhaval, Role: Librarian, Borrowed Books: []")
- 
+    # def test_view_user(self):
+    #     result = self.Librarian.view_user("1")
+    #     self.assertEqual(result,"User ID: 1, Username: Dhaval, Role: Librarian, Borrowed Books: []")
+    # ##
+
+    def test_view_all_user(self):
+        result = self.Librarian.view_all_user()
+        self.assertEqual(result,"User ID: 2, Username: John, Role: user, Borrowed Books: []")
+    #
