@@ -3,8 +3,15 @@ from main import Library
 
 class LibraryTestCases(unittest.TestCase):
     
-    def test_add_books(self):
+    def test_add_book(self):
         Librarian = Library()
         result = Librarian.add_books("1", "The Alchemist", "Paulo Coelho", "1988")
         self.assertEqual(result,"Book Added Successfully!")
     ##
+
+    def test_borrow_book(self):
+        Librarian = Library()
+        result = Librarian.borrow_book("The Alchemist")
+        self.assertEqual(result,"Book Borrowed Successfully!")
+    ##
+

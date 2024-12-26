@@ -4,7 +4,7 @@ class Library:
         self.books = []
     ##
 
-    def add_books(self, isbn, title, author, publication_year):
+    def add_book(self, isbn, title, author, publication_year):
         new_book = {
             "ISBN": isbn,
             "title": title,
@@ -16,11 +16,11 @@ class Library:
         return "Book Added Successfully!"
     ##
 
-    def borrow_books(self):
+    def borrow_book(self):
         pass
     ##
 
-    def return_books(self):
+    def return_book(self):
         pass
     ##
 
