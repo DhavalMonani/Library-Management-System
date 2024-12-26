@@ -5,4 +5,6 @@ class User:
         self.role = role
         self.borrowed_books = []
     ##
+    def __str__(self):
+        return f"User ID: {self.user_id}, Username: {self.username}, Role: {self.role}, Borrowed Books: {self.borrowed_books}"
      

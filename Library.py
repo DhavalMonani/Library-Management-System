@@ -60,7 +60,8 @@ class Library:
         else:
             ## getting user data with user_id from self.users
             user = self.users[user_id]
-
+            if title not in user.borrowed_books:
+                raise ValueError(f'User has not borrowed this Book.')
             ## checking if book is available or not
             for book in self.books:
                 if book["title"].lower() == title.lower():
@@ -73,8 +74,8 @@ class Library:
             raise ValueError(f'Book "{title}" not found in the library.') ## raising error if book is not found!
     ##
 
-#     def view_available_books(self):
-#         return [book for book in self.books if book["status"] == "available"]
-#     ##
+    def view_available_books(self):
+        return [book for book in self.books if book["status"] == "available"]
+    ##
 
 # ##
