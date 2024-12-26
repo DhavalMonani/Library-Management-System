@@ -43,7 +43,7 @@ class Library:
     ##
 
     def view_available_books(self):
-        pass
+        return [book for book in self.books if book["status"] == "available"]
     ##
 
 ##
