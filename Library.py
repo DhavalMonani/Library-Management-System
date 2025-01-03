@@ -4,7 +4,7 @@ class Library:
 
     def __init__(self):
          ## all the books in library
-         self.books = [{"ISBN": "1", "title": "The Alchemist", "author": "Paulo Coelho", "publication_year": "1988", "status": "available"}]
+         self.books = []
 
          ## Dictionary of users with user_id as key
          self.users = {}
@@ -22,6 +22,7 @@ class Library:
 
     def add_book(self,user_id, isbn, title, author, publication_year):
             # Validate each detail
+            validate_details(user_id)
             validate_details(isbn)
             validate_details(title)
             validate_details(author)
@@ -77,20 +78,17 @@ class Library:
         if user_id not in self.users:
             raise ValueError("User Not Found!")
         else:
-            ## getting user data with user_id from self.users
+            ## checking if book has been borrowed or not
             user = self.users[user_id]
             if title not in user.borrowed_books:
-                raise ValueError(f'User has not borrowed this Book.')
-            ## checking if book is available or not
-            for book in self.books:
-                if book["title"].lower() == title.lower():
-                    if book["status"] == "borrowed":
-                        book["status"] = "available" ## updating the status of the book
-                        user.borrowed_books.remove(title) ##removing book from user's borrowed books
-                        return "Book Returned Successfully!"
-                    else:
-                        raise ValueError(f'Sorry, "{title}" is already available.') ##raising error if book is already available
-            raise ValueError(f'Book "{title}" not found in the library.') ## raising error if book is not found!
+                raise ValueError('User has not borrowed this Book.')
+            else:
+                for book in self.books:
+                    if book["title"].lower() == title.lower():
+                        if book["status"] == "borrowed":
+                            book["status"] = "available" ## updating the status of the book
+                            user.borrowed_books.remove(title) ##removing book from user's borrowed books
+                            return "Book Returned Successfully!"
     ##
 
     def view_available_books(self):

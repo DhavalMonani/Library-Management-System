@@ -14,20 +14,24 @@ class LibraryTestCases(unittest.TestCase):
         result = self.Librarian.add_user("2","John")
         self.assertEqual(result,"User added successfully!")
 
-        ## adding another book into library
-        result = self.Librarian.add_book("1","2", "Harry Potter", "J.K. Rowling", "1997")
+        ## adding book into library
+        result = self.Librarian.add_book("1","1","The Alchemist", "Paulo Coelho", "1988")
         self.assertEqual(result, "Book Added Successfully!")
 
+        ## adding another book into library
+        result = self.Librarian.add_book("1","2","Harry Potter", "J.K. Rowling", "1997")
+        self.assertEqual(result, "Book Added Successfully!")
+
+        ## Borrowing a book
         result = self.Librarian.borrow_book("2","The Alchemist")
         self.assertEqual(result, "Book Borrowed Successfully!")
     ##
 
     def test_add_empty_book(self):
         with self.assertRaises(ValueError) as context:
-            self.Librarian.add_book("2",None, "J.K. Rowling", "1997")
+            self.Librarian.add_book("1",None,None,None,None)
         self.assertEqual(str(context.exception), 'Details cannot be None or empty.')
     ##
-
     def test_add_empty_user(self):
         with self.assertRaises(ValueError) as context:
             self.Librarian.add_user("3",None)
@@ -42,21 +46,22 @@ class LibraryTestCases(unittest.TestCase):
 
     def test_add_user(self):
         ##adding a user in library as user-role
-        result = self.Librarian.add_user("2","John")
+        result = self.Librarian.add_user("3","Jay")
         self.assertEqual(result,"User added successfully!")
     ##
 
     def test_add_book(self):
         ## adding a book to library books
-        result = self.Librarian.add_book("1","2", "Harry Potter", "J.K. Rowling", "1997")
+        result = self.Librarian.add_book("1","3", "Demo", "Dhaval", "2024")
         self.assertEqual(result, "Book Added Successfully!")
     ##
 
     def test_borrow_book(self):
         ## Borrow the book
-        result = self.Librarian.borrow_book("2","The Alchemist")
+        result = self.Librarian.borrow_book("2","Harry Potter")
         self.assertEqual(result, "Book Borrowed Successfully!")
-
+    #
+    def test_borrowed_book(self):
         # Attempt to borrow the same book again, which should raise an error
         with self.assertRaises(ValueError) as context:
             self.Librarian.borrow_book("2","The Alchemist")
@@ -74,31 +79,24 @@ class LibraryTestCases(unittest.TestCase):
         # checking if book can be returned or not
         result = self.Librarian.return_book("2","The Alchemist")
         self.assertEqual(result, "Book Returned Successfully!")
-
-        ## checking if available book can be returned or not
-        with self.assertRaises(ValueError) as context:
-            self.Librarian.return_book("2","The Harry Potter")
-        self.assertEqual(str(context.exception), 'User has not borrowed this Book.')
-
     #
 
-    def test_nonexistent_return_book(self):
-
-    ## checking if available book can be returned or not
+    def test_return_available_book(self):
+        # checking if available book can be returned or not
         with self.assertRaises(ValueError) as context:
-            self.Librarian.return_book("2","The Alchemist")
-        self.assertEqual(str(context.exception), 'Sorry, "The Alchemist" is already available.')
+            self.Librarian.return_book("2","Harry Potter")
+        self.assertEqual(str(context.exception), 'User has not borrowed this Book.')
 
+    def test_nonexistent_return_book(self):
         ## testing if a non-existent book can be returned or not!
         with self.assertRaises(ValueError) as context:
-            self.Librarian.return_book("2","The Hobbit")
-        self.assertEqual(str(context.exception), 'Book "The Hobbit" not found in the library.')
+            self.Librarian.return_book("2","The 1234")
+        self.assertEqual(str(context.exception), 'User has not borrowed this Book.')
     ##
 
     def test_available_books(self):
          ## expected books will be compared with available books
          expected_books = [
-     {"ISBN": "1", "title": "The Alchemist", "author": "Paulo Coelho", "publication_year": "1988", "status": "available"},
      {"ISBN": "2", "title": "Harry Potter", "author": "J.K. Rowling", "publication_year": "1997", "status": "available"}
      ]
          available_books = self.Librarian.view_available_books() ##calling the method for getting output
@@ -112,5 +110,5 @@ class LibraryTestCases(unittest.TestCase):
 
     def test_view_all_user(self):
         result = self.Librarian.view_all_user("1")
-        self.assertEqual(result,["User ID: 2, Username: John, Role: user, Borrowed Books: []"])
+        self.assertEqual(result,["User ID: 2, Username: John, Role: user, Borrowed Books: ['The Alchemist']"])
     ##
